@@ -13,3 +13,6 @@ if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
       CACHE STRING "")
 endif()
 
+project(ELCT350)
+
+add_executable(Lab1 main.cpp)
