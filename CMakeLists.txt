@@ -15,4 +15,7 @@ endif()
 
 project(ELCT350)
 
-add_executable(Lab1 main.cpp)
+add_executable(Lab3 src/main.cpp)
+add_custom_command(TARGET Lab3 POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   "${CMAKE_CURRENT_SOURCE_DIR}/config" "$<TARGET_FILE_DIR:Lab3>/config")

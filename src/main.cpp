@@ -1,0 +1,43 @@
+#include <iostream> //places contents of iostream header here (includes definitions of classes and functions which
+                    //we'll use to interface with the screen. Here, io stands for input/output)
+#include <fstream> //file i/o streams
+
+using namespace std; //indicates that we will be using types declared under the std (standard) namespace.
+                     //Namespaces are used to avoid name collisions. Think of them like lastnames. Two people can be
+                     //called John, and you differentiate them by their lastname. Two types can have the same name if
+                     //are in separate namespaces.
+
+double sinusoidal(double time, double amplitude, double frequency, double phase, double offset)
+{
+  frequency *= 2 * 3.14;
+  phase *= 3.14 / 180;
+  return amplitude * sin(frequency * time + phase) + offset;
+}
+
+/**
+ * The entry point function is the function that is automatically called when the executable is run. In C++ its
+ * signature is such that it returns an integer, and takes in an integer and an array of strings as arguments.
+ * These are the command-line arguments invoked when running the program.
+ * 
+ * @param[in] argc the number of command-line arguments (will be at least 1)
+ * @param[in] argv an array containing the command-line arguments (the 0th value in the array will always be the
+ * program name
+ *
+ * @return the error code (if the program exited cleanly, it should return 0. Otherwise, return an integer
+ * corresponding to the error that occurred.
+ **/
+int main(int argc, char* argv[])
+{
+  ifstream input("config/input.txt");
+  double stopTime, timeStep;
+  double amplitude, frequency, phase, offset;
+  input >> stopTime >> timeStep
+        >> amplitude >> frequency >> phase >> offset;
+
+  ofstream output("output.csv");
+  output << "Time,Sinusoidal" << endl;
+  for (double time = 0.0; time <= stopTime; time += timeStep)
+    output << time << ',' << sinusoidal(time, amplitude, frequency, phase, offset) << endl;
+
+  return 0;
+}
