@@ -1,18 +1,14 @@
 #include <iostream> //places contents of iostream header here (includes definitions of classes and functions which
                     //we'll use to interface with the screen. Here, io stands for input/output)
 #include <fstream> //file i/o streams
+#include "Sinusoidal.h"
 
 using namespace std; //indicates that we will be using types declared under the std (standard) namespace.
                      //Namespaces are used to avoid name collisions. Think of them like lastnames. Two people can be
                      //called John, and you differentiate them by their lastname. Two types can have the same name if
                      //are in separate namespaces.
 
-double sinusoidal(double time, double amplitude, double frequency, double phase, double offset)
-{
-  frequency *= 2 * 3.14;
-  phase *= 3.14 / 180;
-  return amplitude * sin(frequency * time + phase) + offset;
-}
+using namespace Leonard;
 
 /**
  * The entry point function is the function that is automatically called when the executable is run. In C++ its
@@ -26,6 +22,7 @@ double sinusoidal(double time, double amplitude, double frequency, double phase,
  * @return the error code (if the program exited cleanly, it should return 0. Otherwise, return an integer
  * corresponding to the error that occurred.
  **/
+
 int main(int argc, char* argv[])
 {
   ifstream input("config/input.txt");
@@ -34,10 +31,11 @@ int main(int argc, char* argv[])
   input >> stopTime >> timeStep
         >> amplitude >> frequency >> phase >> offset;
 
+  Sinusoidal sinClass(amplitude, frequency, phase, offset);
   ofstream output("output.csv");
   output << "Time,Sinusoidal" << endl;
   for (double time = 0.0; time <= stopTime; time += timeStep)
-    output << time << ',' << sinusoidal(time, amplitude, frequency, phase, offset) << endl;
+    output << time << ',' << sinClass.getValue(time) << endl;
 
   return 0;
 }
