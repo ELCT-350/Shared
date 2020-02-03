@@ -7,16 +7,9 @@ namespace Leonard
   class Sinusoidal final
   {
   public:
-    Sinusoidal(double amplitude, double frequency, double phase, double offset)
-      : _amplitude(amplitude), _frequency(frequency * 2.0 * 3.14), _phase(phase * 3.14 / 180.0),
-        _offset(offset)
-    {
-    }
+    Sinusoidal(double amplitude, double frequency, double phase, double offset);
 
-    double getValue(double time)
-    {
-      return _amplitude * sin(_frequency * time + _phase) + _offset;
-    }
+    double getValue(double time);
   private:
     double _amplitude;
     double _frequency;
