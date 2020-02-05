@@ -23,6 +23,12 @@ using namespace Leonard;
  * corresponding to the error that occurred.
  **/
 
+void foo(Sinusoidal& sin1, SinusoidalInheritance& sin2)
+{
+  cout << "SinClassType: " << sin1.getType() << endl;
+  cout << "SinInheritanceType: " << sin2.getType() << endl;
+}
+
 int main(int argc, char* argv[])
 {
   ifstream input("config/input.txt");
@@ -36,6 +42,9 @@ int main(int argc, char* argv[])
   output << "Time,Sinusoidal" << endl;
   for (double time = 0.0; time <= stopTime; time += timeStep)
     output << time << ',' << sinClass.getValue(time) << endl;
+
+  SinusoidalInheritance sin2Class;
+  foo(sinClass, sin2Class);
 
   return 0;
 }
