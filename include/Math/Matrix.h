@@ -9,13 +9,14 @@ namespace ELCT350
     {
     public:
       #pragma region Constructors and Destructors
-      Matrix(size_t rowSize, size_t columnSize);
+      Matrix(size_t rowSize = 0, size_t columnSize = 0);
       Matrix(const Matrix& original);
       Matrix(Matrix&& old) noexcept;
       ~Matrix();
       #pragma endregion
 
       #pragma region Modifiers
+      void clear();
       void setColumn(size_t index, const Vector& column);
       #pragma endregion
 

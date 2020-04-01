@@ -8,8 +8,7 @@ using namespace std;
 Vector::Vector(size_t vectorSize)
   : _size(vectorSize), _values(new double[vectorSize])
 {
-  for (size_t i = 0; i < _size; ++i)
-    _values[i] = 0.0;
+  clear();
 }
 
 Vector::Vector(const Vector& original)
@@ -30,6 +29,14 @@ Vector::~Vector()
 {
   if (_values)
     delete[] _values;
+}
+#pragma endregion
+
+#pragma region Modifiers
+void Vector::clear()
+{
+  for (size_t i = 0; i < _size; ++i)
+    _values[i] = 0.0;
 }
 #pragma endregion
 
@@ -74,6 +81,20 @@ Vector Vector::operator+(const Vector& rhs) const
   for (size_t i = 0; i < _size; ++i)
   {
     sum[i] = _values[i] + rhs._values[i];
+  }
+
+  return sum;
+}
+
+Vector Vector::operator-(const Vector& rhs) const
+{
+  if (rhs._size != _size)
+    throw domain_error("Vectors must be the same size to be added");
+
+  Vector sum(_size);
+  for (size_t i = 0; i < _size; ++i)
+  {
+    sum[i] = _values[i] - rhs._values[i];
   }
 
   return sum;

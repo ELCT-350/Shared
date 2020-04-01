@@ -48,6 +48,14 @@ void Matrix::setColumn(size_t index, const Vector& column)
     _rows[row][index] = column[row];
   }
 }
+
+void Matrix::clear()
+{
+  for (size_t row = 0; row < _rowSize; ++row)
+  {
+    _rows[row].clear();
+  }
+}
 #pragma endregion
 
 #pragma region Observers

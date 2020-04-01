@@ -14,6 +14,10 @@ namespace ELCT350
       ~Vector();
       #pragma endregion
 
+      #pragma region Modifiers
+      void clear();
+      #pragma endregion
+
       #pragma region Observers
       size_t getSize() const;
       #pragma endregion
@@ -27,6 +31,7 @@ namespace ELCT350
       #pragma region Observers
       double operator[](size_t index) const;
       Vector operator+(const Vector& rhs) const;
+      Vector operator-(const Vector& rhs) const;
       double operator*(const Vector& rhs) const;
       #pragma endregion
       #pragma endregion
