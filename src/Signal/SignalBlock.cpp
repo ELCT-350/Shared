@@ -1,4 +1,5 @@
 #include "Signal/SignalBlock.h"
+#include <stdexcept>
 
 using namespace ELCT350::Signal;
 using namespace std;
@@ -15,11 +16,17 @@ SignalBlock::SignalBlock(size_t numInputPorts, size_t numOutputPorts)
 #pragma region Modifiers
 void SignalBlock::setInputPortValue(size_t inputPortIndex, double value)
 {
+  if (inputPortIndex >= _numInputPorts)
+    throw out_of_range("Input port index out of range");
+
   _inputPorts[inputPortIndex] = value;
 }
 
 void SignalBlock::setOutputPortValue(size_t outputPortIndex, double value)
 {
+  if (outputPortIndex >= _numOutputPorts)
+    throw out_of_range("Output port index out of range");
+
   _outputPorts[outputPortIndex] = value;
 }
 
@@ -33,11 +40,17 @@ void SignalBlock::zeroPortValues(unique_ptr<double[]>& portArray, size_t arraySi
 #pragma region Observers
 double SignalBlock::getInputPortValue(size_t inputPortIndex) const
 {
+  if (inputPortIndex >= _numInputPorts)
+    throw out_of_range("Input port index out of range");
+
   return _inputPorts[inputPortIndex];
 }
 
 double SignalBlock::getOutputPortValue(size_t outputPortIndex) const
 {
+  if (outputPortIndex >= _numOutputPorts)
+    throw out_of_range("Output port index out of range");
+
   return _outputPorts[outputPortIndex];
 }
 #pragma endregion

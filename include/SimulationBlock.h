@@ -25,6 +25,7 @@ namespace ELCT350
     #pragma endregion
   private:
     #pragma region Variables
+    size_t _numParameters;
     std::unique_ptr<double[]> _parameters;
     #pragma endregion
   };
