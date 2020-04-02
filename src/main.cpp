@@ -34,6 +34,7 @@ void exampleSignal()
   source.init();
   ramp.init();
 
+  //Step and output results
   ofstream output("outputSignal.csv");
   output << "time,ramp" << endl;
   for (double time = 0.0; time < STOP_TIME; time += TIME_STEP)
@@ -62,8 +63,10 @@ void exampleMna()
   solver.connect(vdc.getPort(IdealVoltageSourceDC::Negative), gnd.getPort(Ground::Reference));
   solver.connect(r.getPort(Resistor::Negative), gnd.getPort(Ground::Reference));
 
+  //Initialize MNA solver (will also init MNA blocks connected)
   solver.init();
 
+  //Step and output results
   ofstream output("outputMNA.csv");
   output << "time,voltage,current" << endl;
   for (double time = 0.0; time < STOP_TIME; time += TIME_STEP)
@@ -79,6 +82,7 @@ void exampleMna()
 
 int main()
 {
+  exampleSignal();
   exampleMna();
   return 0;
 }

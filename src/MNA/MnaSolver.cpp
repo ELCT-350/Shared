@@ -123,7 +123,7 @@ void MnaSolver::solve()
 bool MnaSolver::newtonRaphson()
 {
   #pragma region implement Newton-Raphson here
-  bool converged = false;
+  bool converged = true;
   #pragma endregion
 
   return converged;
