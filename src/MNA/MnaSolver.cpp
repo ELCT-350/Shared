@@ -150,10 +150,13 @@ void MnaSolver::copyIntercept()
     for (size_t row = 0; row < engine->getNumPorts(); ++row)
     {
       const auto& port = engine->getPort(row);
-      if (!port.isReference())
+      if (port.hasAssignedNode())
       {
         const auto& node = const_cast<MnaPort&>(port).getNode();
-        _interceptVector[node.getNodeIndex()] += engine->getIntercept(row);
+        if (!node.isReference())
+        {
+          _interceptVector[node.getNodeIndex()] += engine->getIntercept(row);
+        }
       }
     }
   }
