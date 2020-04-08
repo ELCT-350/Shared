@@ -217,7 +217,6 @@ Matrix Matrix::operator*(const Matrix& rhs) const
 
   Matrix product(_rowSize, rhs._columnSize);
   #pragma region Calculate product here!
-  product[0][0] = 1.0;
   #pragma endregion
 
   return product;
