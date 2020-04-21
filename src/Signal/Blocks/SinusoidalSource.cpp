@@ -1,4 +1,5 @@
 #include "Signal/Blocks/SinusoidalSource.h"
+#include <cmath>
 
 using namespace ELCT350::Signal::Blocks;
 
