@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.13) #CMake will fail if below this version
+cmake_minimum_required (VERSION 3.10) #CMake will fail if below this version
 
 set(CMAKE_CXX_STANDARD 20) #CMake will include necessary compiler flags to enable c++20, if possible
 
@@ -13,12 +13,10 @@ if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
       CACHE STRING "")
 endif()
 
+enable_testing()
+
 project(ELCT350)
 
-set(SIMULATOR_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-file(GLOB_RECURSE SIMULATOR_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
-file(GLOB_RECURSE SIMULATOR_HEADERS ${SIMULATOR_INCLUDE}/*.h)
-
-add_executable(Simulator ${SIMULATOR_SOURCE} ${SIMULATOR_HEADERS})
-target_include_directories(Simulator PRIVATE ${SIMULATOR_INCLUDE})
-
+add_subdirectory(NumericalIntegration)
+add_subdirectory(Simulator)
+add_subdirectory(tests)
